@@ -3,3 +3,4 @@ install
 log
 .vscode
 src/camera_node/camera_node/models
+src/camera_node/camera_node/__pycache__
