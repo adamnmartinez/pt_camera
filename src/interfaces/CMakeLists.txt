@@ -12,6 +12,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Rectangle.msg"
   "msg/Vector.msg"
+  "msg/Angular.msg"
 )
 
 ament_package()
