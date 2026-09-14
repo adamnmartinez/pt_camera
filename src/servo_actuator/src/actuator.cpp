@@ -9,7 +9,7 @@ using namespace boost;
 class ServoActuator : public rclcpp::Node {
     public:
         ServoActuator() : Node("servo_actuator") {
-            asio::io_service io; 
+            asio::io_service io;
             asio::serial_port serial(io);
 
             serial.open("/dev/ttyUSB0");
@@ -18,12 +18,13 @@ class ServoActuator : public rclcpp::Node {
             auto callback = [this, &serial](interfaces::msg::Angular::UniquePtr msg) -> void {
               RCLCPP_INFO(this->get_logger(), "got angular from distance_topic: <%d, %d>", msg->r_pan, msg->r_tilt);
               std::stringstream ss;
-              ss << "PAN " << msg->r_pan << "TILT " << msg->r_tilt;
+              ss << msg->r_pan << " " << msg->r_tilt << '\n';
               string message = ss.str();
+
               _write_to_serial(serial, message);
             };
 
-            _subscriber = this->create_subscription<interfaces::msg::Angular>("cam_topic", 10, callback);
+            _subscriber = this->create_subscription<interfaces::msg::Angular>("distance_topic", 10, callback);
         };
 
     private:

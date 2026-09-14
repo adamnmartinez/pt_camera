@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'camera_node'
+package_name = 'servo_actuator_python'
 
 setup(
     name=package_name,
@@ -10,11 +10,10 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + "/models/", ["camera_node/models/face_detection.pt"]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='adam',
+    maintainer='adamnm',
     maintainer_email='adam.nmartinez@gmail.com',
     description='TODO: Package description',
     license='Apache-2.0',
@@ -25,8 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'publisher = camera_node.camera_publisher:main',
-            'visual = camera_node.camera_publisher_visual:main'
+            'serial = servo_actuator_python.serial:main'
         ],
     },
 )

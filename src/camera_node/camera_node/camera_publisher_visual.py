@@ -36,7 +36,7 @@ class CameraPublisher(Node):
         self.net.eval()
 
         self.publisher = self.create_publisher(Rectangle, 'cam_topic', 10)
-        self.timer = self.create_timer(1.5, self.publish_callback)
+        self.timer = self.create_timer(0.5, self.publish_callback)
 
     def publish_callback(self):
         image = self.capture.capture_array("main")
@@ -74,6 +74,11 @@ class CameraPublisher(Node):
             rect.y2 = y2
 
             self.get_logger().info(f"publishing rect to cam_topic: ({x1}, {y1}) ({x2}, {y2})")
+
+            cv2.rectangle(image, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            cv2.line(image, ((x1 + x2)//2, (y1 + y2)//2), (512//2, 512//2), (200, 0, 200), 2)
+            cv2.imshow("Image", image)
+            cv2.waitKey(1)
 
             self.publisher.publish(rect)
 
