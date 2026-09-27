@@ -25,8 +25,9 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'publisher = camera_node.camera_publisher:main',
-            'visual = camera_node.camera_publisher_visual:main'
+            'pi_publisher = camera_node.picam_publisher:main',
+            'pi_visual = camera_node.picam_visual:main',
+            'opencv_publisher = camera_node.opencv_publisher:main'
         ],
     },
 )
